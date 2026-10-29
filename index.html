@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Currency Converter</title>
+    <!-- AdsGram SDK -->
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #1a1a1a; color: white; }
+        .card { background: #2a2a2a; padding: 20px; border-radius: 12px; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        input, select, button { width: 90%; padding: 12px; margin: 10px 0; font-size: 16px; border-radius: 8px; border: none; box-sizing: border-box; }
+        button { background-color: #0088cc; color: white; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .result-box { margin-top: 15px; font-size: 18px; color: #4cd964; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Easy Currency Converter</h2>
+        <p>Convert rates instantly below:</p>
+        
+        <input type="number" id="amount" placeholder="Enter Amount" value="100">
+        
+        <button onclick="convertWithAd()">Convert Currency</button>
+
+        <div id="result" class="result-box"></div>
+    </div>
+
+    <script>
+        const AdController = window.Adsgram ? window.Adsgram.init({ blockId: "int-56388" }) : null;
+
+        function convertWithAd() {
+            if (AdController) {
+                AdController.show().then((result) => {
+                    calculate();
+                }).catch((error) => {
+                    calculate();
+                });
+            } else {
+                calculate();
+            }
+        }
+
+        function calculate() {
+            let val = document.getElementById('amount').value;
+            if (!val) val = 0;
+            let converted = (val * 1.08).toFixed(2);
+            document.getElementById('result').innerText = val + " USD = " + converted + " EUR";
+        }
+    </script>
+</body>
+</html>
